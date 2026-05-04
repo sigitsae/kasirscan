@@ -19,7 +19,6 @@
 html,body{height:100%;overflow:hidden}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex;flex-direction:column;max-width:480px;margin:0 auto;position:relative}
 
-/* TOPBAR */
 .topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .brand{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--blue);letter-spacing:-0.5px}
 .brand span{color:var(--text)}
@@ -33,7 +32,6 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
 
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden}
 
-/* KAMERA */
 .cam-section{position:relative;background:#000;flex-shrink:0;height:190px;overflow:hidden}
 #video{width:100%;height:100%;object-fit:cover;display:block}
 .cam-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
@@ -51,11 +49,9 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
 .cam-badge{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.75);font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:4px;border:1px solid;display:none}
 .cam-badge.on{display:block;color:var(--green);border-color:var(--green)}
 .cam-badge.off{display:block;color:var(--red);border-color:var(--red)}
-/* Label depan/belakang */
 .cam-facing{position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.75);font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:4px;border:1px solid var(--blue);color:var(--blue);display:none}
 .cam-facing.show{display:block}
 
-/* KONTROL */
 .cam-controls{background:var(--surface);border-bottom:1px solid var(--border);padding:8px 10px;display:flex;gap:8px;flex-shrink:0}
 .btn{padding:8px 12px;border-radius:7px;border:1px solid transparent;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:5px}
 .btn-scan{background:var(--blue);color:#fff;border-color:var(--blue);flex:1}
@@ -64,7 +60,6 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
 .btn-cam{background:var(--surface2);color:var(--muted);border-color:var(--border);flex:none;padding:8px 10px;display:none;font-size:13px}
 .btn-cam:hover{border-color:var(--blue);color:var(--blue)}
 
-/* MANUAL */
 .manual-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:8px 10px;display:flex;gap:8px;flex-shrink:0}
 .manual-input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:8px 12px;color:var(--text);font-family:var(--mono);font-size:13px;outline:none;transition:border-color .15s}
 .manual-input:focus{border-color:var(--blue)}
@@ -72,7 +67,6 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
 .btn-add{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-dim);font-size:20px;width:38px;height:38px;border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;font-weight:700;flex-shrink:0}
 .btn-add:hover{background:var(--blue);color:#fff}
 
-/* ITEMS */
 .items-area{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:8px}
 .items-area::-webkit-scrollbar{width:3px}
 .items-area::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
@@ -94,7 +88,6 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
 .qbtn.del:hover{border-color:var(--red);color:var(--red)}
 .qnum{font-family:var(--mono);font-size:12px;font-weight:600;min-width:20px;text-align:center}
 
-/* FOOTER */
 .footer{background:var(--surface);border-top:1px solid var(--border);padding:10px;flex-shrink:0}
 .footer-summary{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
 .footer-label{font-size:12px;color:var(--muted)}
@@ -106,7 +99,6 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
 .btn-checkout:hover{background:#56d364}
 .btn-checkout:disabled{background:var(--surface2);color:var(--muted);cursor:not-allowed}
 
-/* OVERLAY / POPUP */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:200;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
 .overlay.open{opacity:1;pointer-events:all}
 .popup{background:var(--surface);border-radius:16px 16px 0 0;border:1px solid var(--border);border-bottom:none;width:100%;max-width:480px;transform:translateY(40px);transition:transform .25s;max-height:92vh;overflow-y:auto}
@@ -116,7 +108,6 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
 .popup-close{background:var(--surface2);border:1px solid var(--border);color:var(--muted);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
 .popup-body{padding:14px 16px 20px}
 
-/* FORM PRODUK BARU */
 .form-group{margin-bottom:12px}
 .form-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px;display:block}
 .form-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-family:var(--sans);font-size:14px;outline:none;transition:border-color .15s}
@@ -129,7 +120,6 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
 .btn-save:disabled{background:var(--surface2);color:var(--muted);cursor:not-allowed}
 .btn-skip{background:var(--surface2);color:var(--muted);border:1px solid var(--border);padding:12px 16px;border-radius:9px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer}
 
-/* CHECKOUT POPUP */
 .r-item{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px}
 .r-item:last-child{border-bottom:none}
 .r-name{color:var(--muted);max-width:65%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -146,7 +136,6 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
 .btn-confirm:hover{background:#56d364}
 .btn-back{background:var(--surface2);color:var(--muted);border:1px solid var(--border);padding:12px 16px;border-radius:9px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer}
 
-/* SUKSES */
 .success-wrap{text-align:center;padding:8px 0 4px}
 .success-icon{font-size:52px;margin-bottom:10px}
 .success-title{font-size:19px;font-weight:700;margin-bottom:4px}
@@ -155,18 +144,12 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
 .btn-new{width:100%;background:var(--blue);color:#fff;border:none;padding:12px;border-radius:9px;font-family:var(--sans);font-size:14px;font-weight:700;cursor:pointer;margin-bottom:8px}
 .btn-print{width:100%;background:transparent;color:var(--muted);border:1px solid var(--border);padding:10px;border-radius:9px;font-family:var(--sans);font-size:13px;cursor:pointer}
 
-/* TOAST */
 .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--surface2);color:var(--text);border:1px solid var(--border);padding:8px 16px;border-radius:30px;font-size:13px;font-weight:500;opacity:0;transition:all .25s;z-index:400;white-space:nowrap;pointer-events:none;max-width:90vw;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast.ok{background:var(--green-dim);border-color:var(--green);color:var(--green)}
 .toast.err{background:var(--red-dim);border-color:var(--red);color:var(--red)}
 .toast.warn{background:var(--amber-dim);border-color:var(--amber);color:var(--amber)}
 .sec-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px;margin-top:4px}
-
-/* LOADING OVERLAY */
-.db-loading{position:absolute;inset:0;background:rgba(13,17,23,0.85);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;z-index:10;font-size:13px;color:var(--muted)}
-.spinner{width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -181,7 +164,6 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
 </div>
 
 <div class="main">
-  <!-- KAMERA -->
   <div class="cam-section">
     <div class="cam-idle" id="cam-idle">
       <div class="cam-idle-icon">📷</div>
@@ -195,21 +177,18 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
     <div class="cam-facing" id="cam-facing">BELAKANG</div>
   </div>
 
-  <!-- KONTROL KAMERA -->
   <div class="cam-controls">
     <button class="btn btn-scan" id="btn-start" onclick="startCam()">▶ Mulai Scan</button>
     <button class="btn btn-stop" id="btn-stop" onclick="stopCam()">⏹ Stop</button>
     <button class="btn btn-cam" id="btn-flip" onclick="flipCam()">🔄 Ganti Kamera</button>
   </div>
 
-  <!-- MANUAL INPUT -->
   <div class="manual-bar">
     <input class="manual-input" id="manual" type="text" placeholder="Ketik barcode atau nama produk → Enter" autocomplete="off"
       onkeydown="if(event.key==='Enter')handleManual()">
     <button class="btn-add" onclick="handleManual()" title="Tambah">+</button>
   </div>
 
-  <!-- LIST ITEM -->
   <div class="items-area" id="items-area">
     <div class="empty" id="empty-state">
       <div class="empty-icon">🛒</div>
@@ -217,7 +196,6 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
     </div>
   </div>
 
-  <!-- FOOTER -->
   <div class="footer">
     <div class="footer-summary">
       <span class="footer-label" id="footer-count">0 item</span>
@@ -274,15 +252,11 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
 
 <div class="toast" id="toast"></div>
 
-<!-- ══════════════════════════════════════════
-     FIREBASE SDK
-     ══════════════════════════════════════════ -->
 <script type="module">
 import { initializeApp }    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, doc, getDoc, setDoc, collection, getDocs }
+import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, collection, getDocs }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// ── CONFIG ──
 const firebaseConfig = {
   apiKey:            "AIzaSyDuCjmcO9KRhN3W-rPi2wN561gMMurw4KE",
   authDomain:        "scan-a4a2b.firebaseapp.com",
@@ -293,15 +267,12 @@ const firebaseConfig = {
   measurementId:     "G-1NED31LH5K"
 };
 
-// ── INIT ──
 const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
 
-// Tandai Firebase siap
 document.getElementById('conn-dot').className = 'conn-dot ok';
 document.getElementById('conn-dot').title = 'Firebase terhubung';
 
-// ── STATE ──
 let cart         = [];
 let stream       = null;
 let scanning     = false;
@@ -316,7 +287,6 @@ let barcodeDetector = null;
 let pendingBarcode  = '';
 let selMethod       = 'QRIS';
 
-// ── TOAST ──
 let toastTimer;
 function toast(msg, type='', dur=2500){
   const el = document.getElementById('toast');
@@ -325,16 +295,10 @@ function toast(msg, type='', dur=2500){
   toastTimer = setTimeout(() => el.className = 'toast', dur);
 }
 
-// ══════════════════════════════════════════
-// FIREBASE: cari produk by barcode
-// ══════════════════════════════════════════
 async function findProduct(barcode){
   try{
-    // 1. Cari by document ID (barcode = doc ID)
     const snap = await getDoc(doc(db, 'products', barcode));
     if(snap.exists()) return { bc: snap.id, ...snap.data() };
-
-    // 2. Fallback: cari by field 'bc' (jika ada produk lama dengan field bc)
     const colSnap = await getDocs(collection(db, 'products'));
     for(const d of colSnap.docs){
       const data = d.data();
@@ -347,7 +311,6 @@ async function findProduct(barcode){
   }
 }
 
-// Cari produk by nama (untuk input manual)
 async function findProductByName(keyword){
   try{
     const colSnap = await getDocs(collection(db, 'products'));
@@ -360,7 +323,6 @@ async function findProductByName(keyword){
   } catch(e){ return null; }
 }
 
-// Simpan produk baru ke Firestore
 async function saveProductToFirebase(bc, name, price){
   await setDoc(doc(db, 'products', bc), {
     name, price,
@@ -370,9 +332,18 @@ async function saveProductToFirebase(bc, name, price){
   });
 }
 
-// ══════════════════════════════════════════
-// KAMERA
-// ══════════════════════════════════════════
+// ════════════════════════════════════════
+// FIX 1: Kurangi stok di Firestore
+// ════════════════════════════════════════
+async function decrementStocks(cartItems){
+  const promises = cartItems.map(item =>
+    updateDoc(doc(db, 'products', item.bc), {
+      stock: increment(-item.qty)
+    }).catch(e => console.error(`Gagal update stok ${item.bc}:`, e))
+  );
+  await Promise.all(promises);
+}
+
 async function classifyCameras(devices){
   backCameras = []; frontCameras = [];
   for(const d of devices){
@@ -380,7 +351,6 @@ async function classifyCameras(devices){
     if(/back|rear|belakang|environment/.test(label))       backCameras.push(d);
     else if(/front|depan|user|selfie/.test(label))         frontCameras.push(d);
     else {
-      // Label kosong — ambil capabilities
       let detected = false;
       if(d.getCapabilities){
         try{
@@ -411,15 +381,11 @@ window.startCam = async function(){
   try{
     const formats = await BarcodeDetector.getSupportedFormats();
     barcodeDetector = new BarcodeDetector({formats});
-
-    // Minta izin dulu → label kamera baru tersedia
     const tmp = await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}}});
     tmp.getTracks().forEach(t=>t.stop());
-
     const devices = await navigator.mediaDevices.enumerateDevices();
     allCameras = devices.filter(d=>d.kind==='videoinput');
     await classifyCameras(allCameras);
-
     if(allCameras.length > 1) document.getElementById('btn-flip').style.display='';
     useBack=true; backIdx=0; frontIdx=0;
     await openStream();
@@ -526,13 +492,8 @@ async function scanLoop(){
   }
 }
 
-// ══════════════════════════════════════════
-// BARCODE HANDLER — lookup ke Firebase
-// ══════════════════════════════════════════
 async function handleBarcode(code){
-  // Cegah scan ganda saat popup sudah buka
   if(document.getElementById('overlay-add').classList.contains('open')) return;
-
   toast('🔍 Mencari produk...', '', 1500);
   const p = await findProduct(code);
   if(p){
@@ -551,13 +512,9 @@ window.handleManual = async function(){
   const val = document.getElementById('manual').value.trim();
   if(!val) return;
   document.getElementById('manual').value = '';
-
   toast('🔍 Mencari produk...', '', 1500);
-
-  // Coba by barcode dulu, lalu by nama
   let p = await findProduct(val);
   if(!p) p = await findProductByName(val);
-
   if(p){
     addToCart(p);
   } else {
@@ -570,9 +527,6 @@ window.handleManual = async function(){
   }
 };
 
-// ══════════════════════════════════════════
-// POPUP PRODUK BARU
-// ══════════════════════════════════════════
 window.closeAdd = function(){
   document.getElementById('overlay-add').classList.remove('open');
   pendingBarcode = '';
@@ -599,9 +553,6 @@ window.saveNewProduct = async function(){
   btn.disabled=false; btn.textContent='💾 Simpan & Tambah';
 };
 
-// ══════════════════════════════════════════
-// CART
-// ══════════════════════════════════════════
 function addToCart(product){
   const ex = cart.find(c=>c.bc===product.bc);
   if(ex){ ex.qty++; toast(`+1 ${product.name} (${ex.qty}×)`,'ok'); }
@@ -634,9 +585,18 @@ function renderCart(){
   document.getElementById('footer-count').textContent = `${items} item`;
   document.getElementById('footer-total').textContent = `Rp ${total.toLocaleString('id-ID')}`;
   document.getElementById('btn-checkout').disabled    = cart.length===0;
-  if(!cart.length){ empty.style.display='flex'; return; }
-  empty.style.display='none';
+
+  // ════════════════════════════════════════
+  // FIX 2: Hapus semua item card dulu sebelum render ulang
+  // ════════════════════════════════════════
   Array.from(area.querySelectorAll('.item-card')).forEach(e=>e.remove());
+
+  if(!cart.length){
+    empty.style.display='flex';
+    return;
+  }
+  empty.style.display='none';
+
   cart.slice().reverse().forEach((item,ri)=>{
     const idx  = cart.length-1-ri;
     const card = document.createElement('div');
@@ -656,13 +616,10 @@ function renderCart(){
           <button class="qbtn del" onclick="removeItem('${item.bc}')" style="font-size:10px;color:var(--red)">✕</button>
         </div>
       </div>`;
-    area.insertBefore(card, area.firstChild);
+    area.appendChild(card);
   });
 }
 
-// ══════════════════════════════════════════
-// CHECKOUT
-// ══════════════════════════════════════════
 window.openCheckout = function(){
   if(!cart.length) return;
   renderCheckoutView();
@@ -701,20 +658,29 @@ window.pickMethod = function(el, method){
   el.classList.add('sel');
 };
 
-window.confirmPayment = function(){
+// ════════════════════════════════════════
+// FIX 1 & 2: confirmPayment — kurangi stok + bersihkan cart
+// ════════════════════════════════════════
+window.confirmPayment = async function(){
   const total = cart.reduce((s,c)=>s+c.price*c.qty,0);
   const items = cart.reduce((s,c)=>s+c.qty,0);
   const now   = new Date();
   const dateStr = now.toLocaleDateString('id-ID',{day:'2-digit',month:'long',year:'numeric'})
     +' '+now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
   const noTrx = 'TRX'+Date.now().toString().slice(-8);
+
+  // Simpan salinan cart sebelum dikosongkan
+  const cartSnapshot = [...cart];
+
   let struk = `==============================\n     KASIR SCAN POS\n==============================\nNo. ${noTrx}\n${dateStr}\n------------------------------\n`;
-  cart.forEach(c=>{
+  cartSnapshot.forEach(c=>{
     const nm = c.name.length>16 ? c.name.substring(0,15)+'…' : c.name;
     struk += `${nm}\n  ${c.qty} x Rp ${c.price.toLocaleString('id-ID')} = Rp ${(c.price*c.qty).toLocaleString('id-ID')}\n`;
   });
   struk += `------------------------------\n${items} item\nTOTAL  Rp ${total.toLocaleString('id-ID')}\nBayar  ${selMethod}\n==============================\n    Terima kasih! 🙏\n==============================`;
   window._lastStruk = struk;
+
+  // Tampilkan sukses dulu
   document.getElementById('co-title').textContent = '✅ Pembayaran Berhasil';
   document.getElementById('co-body').innerHTML = `
     <div class="success-wrap">
@@ -725,10 +691,24 @@ window.confirmPayment = function(){
       <button class="btn-new" onclick="newTransaction()">🛒 Transaksi Baru</button>
       <button class="btn-print" onclick="doPrint()">🖨 Cetak Struk</button>
     </div>`;
-  cart=[]; renderCart();
+
+  // FIX 1: Kurangi stok di Firestore (background, tidak blokir UI)
+  decrementStocks(cartSnapshot).then(()=>{
+    toast('Stok diperbarui ✓', 'ok', 2000);
+  }).catch(e=>{
+    console.error('Gagal update stok:', e);
+  });
+
+  // FIX 2: Kosongkan cart dan render ulang
+  cart = [];
+  renderCart();
 };
 
-window.newTransaction = function(){ closeCheckout(); };
+// FIX 2: newTransaction hanya tutup popup (cart sudah kosong)
+window.newTransaction = function(){
+  closeCheckout();
+};
+
 window.doPrint = function(){
   const w = window.open('','_blank','width=320,height=500');
   if(!w){ toast('Popup diblokir browser','err'); return; }
@@ -736,7 +716,6 @@ window.doPrint = function(){
   w.document.close(); w.focus(); setTimeout(()=>w.print(),400);
 };
 
-// ── CLOSE ON BACKDROP ──
 document.getElementById('overlay-add').addEventListener('click',function(e){if(e.target===this)closeAdd();});
 document.getElementById('overlay-checkout').addEventListener('click',function(e){if(e.target===this)closeCheckout();});
 document.getElementById('new-price').addEventListener('keydown',function(e){if(e.key==='Enter')saveNewProduct();});
