@@ -6,25 +6,15 @@
 <title>KasirScan — POS Barcode</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
-
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0d1117;
-  --surface:#161b22;
-  --surface2:#21262d;
-  --border:#30363d;
-  --blue:#2f81f7;
-  --blue-dim:#1a3a6e;
-  --green:#3fb950;
-  --green-dim:#1a3a22;
-  --red:#f85149;
-  --red-dim:#3d1a1a;
-  --amber:#e3b341;
-  --amber-dim:#3d2e0a;
-  --text:#e6edf3;
-  --muted:#8b949e;
-  --mono:'IBM Plex Mono',monospace;
-  --sans:'Plus Jakarta Sans',sans-serif;
+  --bg:#0d1117;--surface:#161b22;--surface2:#21262d;--border:#30363d;
+  --blue:#2f81f7;--blue-dim:#1a3a6e;
+  --green:#3fb950;--green-dim:#1a3a22;
+  --red:#f85149;--red-dim:#3d1a1a;
+  --amber:#e3b341;--amber-dim:#3d2e0a;
+  --text:#e6edf3;--muted:#8b949e;
+  --mono:'IBM Plex Mono',monospace;--sans:'Plus Jakarta Sans',sans-serif;
 }
 html,body{height:100%;overflow:hidden}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex;flex-direction:column;max-width:480px;margin:0 auto;position:relative}
@@ -33,16 +23,13 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
 .topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .brand{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--blue);letter-spacing:-0.5px}
 .brand span{color:var(--text)}
-.topbar-right{display:flex;align-items:center;gap:8px}
 .total-chip{background:var(--blue-dim);color:var(--blue);font-family:var(--mono);font-size:12px;font-weight:600;padding:4px 10px;border-radius:20px}
 
-/* LAYOUT */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden}
 
-/* CAMERA AREA */
-.cam-section{position:relative;background:#000;flex-shrink:0;height:200px;overflow:hidden}
+/* KAMERA */
+.cam-section{position:relative;background:#000;flex-shrink:0;height:190px;overflow:hidden}
 #video{width:100%;height:100%;object-fit:cover;display:block}
-#canvas-hidden{display:none}
 .cam-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
 .scan-box{width:220px;height:90px;position:relative}
 .scan-box::before,.scan-box::after,.scan-box>i::before,.scan-box>i::after{content:'';position:absolute;width:18px;height:18px;border-color:var(--blue);border-style:solid}
@@ -50,131 +37,142 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
 .scan-box::after{top:0;right:0;border-width:2px 2px 0 0}
 .scan-box>i::before{bottom:0;left:0;border-width:0 0 2px 2px}
 .scan-box>i::after{bottom:0;right:0;border-width:0 2px 2px 0}
-.scan-line{position:absolute;left:6px;right:6px;height:1.5px;background:var(--blue);opacity:0.9;animation:sl 1.8s ease-in-out infinite;top:0;box-shadow:0 0 6px var(--blue)}
+.scan-line{position:absolute;left:6px;right:6px;height:1.5px;background:var(--blue);animation:sl 1.8s ease-in-out infinite;top:0;box-shadow:0 0 6px var(--blue)}
 @keyframes sl{0%{top:0}50%{top:calc(100% - 1.5px)}100%{top:0}}
 .cam-idle{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#000;gap:8px}
-.cam-idle-icon{font-size:44px;opacity:0.3}
+.cam-idle-icon{font-size:40px;opacity:0.25}
 .cam-idle-txt{font-size:13px;color:var(--muted);text-align:center;line-height:1.5}
-.cam-badge{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.7);color:var(--green);font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:4px;border:1px solid var(--green);display:none}
-.cam-badge.on{display:block}
-.cam-badge.off{color:var(--red);border-color:var(--red)}
+.cam-badge{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.75);font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:4px;border:1px solid;display:none}
+.cam-badge.on{display:block;color:var(--green);border-color:var(--green)}
+.cam-badge.off{display:block;color:var(--red);border-color:var(--red)}
 
-/* CAM CONTROLS */
-.cam-controls{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 12px;display:flex;gap:8px;flex-shrink:0}
-.btn{padding:8px 14px;border-radius:7px;border:1px solid transparent;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:5px}
+/* KONTROL */
+.cam-controls{background:var(--surface);border-bottom:1px solid var(--border);padding:8px 10px;display:flex;gap:8px;flex-shrink:0}
+.btn{padding:8px 12px;border-radius:7px;border:1px solid transparent;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:5px}
 .btn-scan{background:var(--blue);color:#fff;border-color:var(--blue);flex:1}
 .btn-scan:hover{background:#388bfd}
 .btn-stop{background:var(--red-dim);color:var(--red);border-color:var(--red);flex:1;display:none}
-.btn-stop:hover{background:#4d1a1a}
-.btn-cam{background:var(--surface2);color:var(--muted);border-color:var(--border);flex:none;padding:8px 10px}
-.btn-cam:hover{color:var(--text);border-color:var(--muted)}
-.cam-select{background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-family:var(--sans);font-size:12px;flex:1;display:none}
+.btn-cam{background:var(--surface2);color:var(--muted);border-color:var(--border);flex:none;padding:8px 10px;display:none}
 
-/* MANUAL INPUT */
-.manual-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:8px 12px;display:flex;gap:8px;flex-shrink:0;align-items:center}
+/* MANUAL */
+.manual-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:8px 10px;display:flex;gap:8px;flex-shrink:0}
 .manual-input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:8px 12px;color:var(--text);font-family:var(--mono);font-size:13px;outline:none;transition:border-color .15s}
 .manual-input:focus{border-color:var(--blue)}
 .manual-input::placeholder{color:var(--muted)}
-.btn-add{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-dim);font-size:20px;width:36px;height:36px;border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;font-weight:700}
+.btn-add{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-dim);font-size:20px;width:38px;height:38px;border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;font-weight:700;flex-shrink:0}
 .btn-add:hover{background:var(--blue);color:#fff}
 
-/* ITEMS LIST */
-.items-area{flex:1;overflow-y:auto;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
-.items-area::-webkit-scrollbar{width:4px}
-.items-area::-webkit-scrollbar-track{background:transparent}
+/* ITEMS */
+.items-area{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:8px}
+.items-area::-webkit-scrollbar{width:3px}
 .items-area::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-
 .empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;color:var(--muted)}
-.empty-icon{font-size:40px;opacity:0.3}
+.empty-icon{font-size:38px;opacity:0.25}
 .empty-txt{font-size:13px;text-align:center;line-height:1.6}
 
 .item-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:10px;animation:fadeIn .2s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
-.item-card:hover{border-color:#444c56}
 .item-num{background:var(--blue-dim);color:var(--blue);font-family:var(--mono);font-size:11px;font-weight:600;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .item-body{flex:1;min-width:0}
 .item-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .item-bc{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:1px}
 .item-right{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
 .item-total{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--green)}
-.qty-row{display:flex;align-items:center;gap:6px}
-.qbtn{width:24px;height:24px;border-radius:5px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .15s;font-weight:700}
+.qty-row{display:flex;align-items:center;gap:5px}
+.qbtn{width:26px;height:26px;border-radius:5px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;font-weight:700}
 .qbtn:hover{border-color:var(--blue);color:var(--blue)}
 .qbtn.del:hover{border-color:var(--red);color:var(--red)}
-.qnum{font-family:var(--mono);font-size:12px;font-weight:600;min-width:18px;text-align:center}
+.qnum{font-family:var(--mono);font-size:12px;font-weight:600;min-width:20px;text-align:center}
 
-/* FOOTER / CHECKOUT */
-.footer{background:var(--surface);border-top:1px solid var(--border);padding:10px 12px;flex-shrink:0}
+/* FOOTER */
+.footer{background:var(--surface);border-top:1px solid var(--border);padding:10px;flex-shrink:0}
 .footer-summary{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
 .footer-label{font-size:12px;color:var(--muted)}
 .footer-total{font-family:var(--mono);font-size:20px;font-weight:600;color:var(--green)}
 .footer-btns{display:flex;gap:8px}
 .btn-cancel{background:var(--red-dim);color:var(--red);border:1px solid var(--red-dim);padding:10px 14px;border-radius:8px;cursor:pointer;font-family:var(--sans);font-size:13px;font-weight:600;transition:all .15s}
 .btn-cancel:hover{border-color:var(--red)}
-.btn-checkout{flex:1;background:var(--green);color:#000;border:1px solid var(--green);padding:10px;border-radius:8px;cursor:pointer;font-family:var(--sans);font-size:14px;font-weight:700;transition:all .15s}
+.btn-checkout{flex:1;background:var(--green);color:#000;border:none;padding:10px;border-radius:8px;cursor:pointer;font-family:var(--sans);font-size:14px;font-weight:700;transition:all .15s}
 .btn-checkout:hover{background:#56d364}
-.btn-checkout:disabled{background:var(--surface2);color:var(--muted);border-color:var(--border);cursor:not-allowed}
+.btn-checkout:disabled{background:var(--surface2);color:var(--muted);cursor:not-allowed}
 
-/* MODAL */
-.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
-.modal-bg.open{opacity:1;pointer-events:all}
-.modal{background:var(--surface);border-radius:16px 16px 0 0;border:1px solid var(--border);border-bottom:none;width:100%;max-width:480px;padding:20px;transform:translateY(30px);transition:transform .25s;max-height:90vh;overflow-y:auto}
-.modal-bg.open .modal{transform:translateY(0)}
-.modal-title{font-size:16px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
-.receipt-list{margin-bottom:12px}
+/* ===== POPUP / OVERLAY ===== */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:200;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.overlay.open{opacity:1;pointer-events:all}
+.popup{background:var(--surface);border-radius:16px 16px 0 0;border:1px solid var(--border);border-bottom:none;width:100%;max-width:480px;transform:translateY(40px);transition:transform .25s;max-height:92vh;overflow-y:auto}
+.overlay.open .popup{transform:translateY(0)}
+.popup-header{padding:16px 16px 0;display:flex;align-items:center;justify-content:space-between}
+.popup-title{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
+.popup-close{background:var(--surface2);border:1px solid var(--border);color:var(--muted);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
+.popup-body{padding:14px 16px 20px}
+
+/* FORM TAMBAH PRODUK */
+.form-group{margin-bottom:12px}
+.form-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px;display:block}
+.form-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-family:var(--sans);font-size:14px;outline:none;transition:border-color .15s}
+.form-input:focus{border-color:var(--blue)}
+.form-input::placeholder{color:var(--muted)}
+.form-input[readonly]{opacity:0.6;cursor:not-allowed}
+.bc-display{background:var(--surface2);border:1px solid var(--amber-dim);border-radius:8px;padding:10px 12px;font-family:var(--mono);font-size:13px;color:var(--amber);word-break:break-all}
+
+/* POPUP ACTIONS */
+.popup-actions{display:flex;gap:8px;margin-top:16px}
+.btn-save{flex:1;background:var(--green);color:#000;border:none;padding:12px;border-radius:9px;font-family:var(--sans);font-size:14px;font-weight:700;cursor:pointer;transition:background .15s}
+.btn-save:hover{background:#56d364}
+.btn-skip{background:var(--surface2);color:var(--muted);border:1px solid var(--border);padding:12px 16px;border-radius:9px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer}
+
+/* CHECKOUT POPUP */
 .r-item{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px}
 .r-item:last-child{border-bottom:none}
-.r-name{color:var(--muted)}
+.r-name{color:var(--muted);max-width:65%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .r-val{font-family:var(--mono);font-weight:500}
 .r-total-row{display:flex;justify-content:space-between;padding:10px 0 4px;font-size:16px;font-weight:700;border-top:2px solid var(--border);margin-top:4px}
 .r-total-row .r-val{color:var(--green)}
 .pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
 .pm{border:1.5px solid var(--border);border-radius:9px;padding:10px;text-align:center;cursor:pointer;transition:all .15s;background:var(--surface2)}
 .pm:hover,.pm.sel{border-color:var(--blue);background:var(--blue-dim)}
-.pm-icon{font-size:22px;display:block;margin-bottom:3px}
+.pm-icon{font-size:20px;display:block;margin-bottom:3px}
 .pm-label{font-size:11px;font-weight:600;color:var(--muted)}
 .pm.sel .pm-label{color:var(--blue)}
-.modal-actions{display:flex;gap:8px;margin-top:14px}
-.btn-confirm{flex:1;background:var(--green);color:#000;border:none;padding:12px;border-radius:9px;font-family:var(--sans);font-size:14px;font-weight:700;cursor:pointer;transition:background .15s}
+.btn-confirm{flex:1;background:var(--green);color:#000;border:none;padding:12px;border-radius:9px;font-family:var(--sans);font-size:14px;font-weight:700;cursor:pointer}
 .btn-confirm:hover{background:#56d364}
 .btn-back{background:var(--surface2);color:var(--muted);border:1px solid var(--border);padding:12px 16px;border-radius:9px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer}
 
-/* SUCCESS */
-.success-modal{text-align:center;padding:10px 0}
-.success-icon{font-size:56px;margin-bottom:10px}
-.success-title{font-size:20px;font-weight:700;margin-bottom:4px}
-.success-sub{font-size:13px;color:var(--muted);margin-bottom:16px}
-.struk-box{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px;font-family:var(--mono);font-size:11px;color:var(--muted);text-align:left;white-space:pre-wrap;margin-bottom:14px;line-height:1.7}
+/* SUKSES */
+.success-wrap{text-align:center;padding:8px 0 4px}
+.success-icon{font-size:52px;margin-bottom:10px}
+.success-title{font-size:19px;font-weight:700;margin-bottom:4px}
+.success-sub{font-size:13px;color:var(--muted);margin-bottom:14px}
+.struk-box{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;font-family:var(--mono);font-size:11px;color:var(--muted);text-align:left;white-space:pre-wrap;margin-bottom:14px;line-height:1.7}
 .btn-new{width:100%;background:var(--blue);color:#fff;border:none;padding:12px;border-radius:9px;font-family:var(--sans);font-size:14px;font-weight:700;cursor:pointer;margin-bottom:8px}
 .btn-print{width:100%;background:transparent;color:var(--muted);border:1px solid var(--border);padding:10px;border-radius:9px;font-family:var(--sans);font-size:13px;cursor:pointer}
 
 /* TOAST */
-.toast{position:fixed;bottom:140px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--surface2);color:var(--text);border:1px solid var(--border);padding:8px 16px;border-radius:30px;font-size:13px;font-weight:500;opacity:0;transition:all .25s;z-index:300;white-space:nowrap;pointer-events:none}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--surface2);color:var(--text);border:1px solid var(--border);padding:8px 16px;border-radius:30px;font-size:13px;font-weight:500;opacity:0;transition:all .25s;z-index:400;white-space:nowrap;pointer-events:none;max-width:90vw;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast.ok{background:var(--green-dim);border-color:var(--green);color:var(--green)}
 .toast.err{background:var(--red-dim);border-color:var(--red);color:var(--red)}
 .toast.warn{background:var(--amber-dim);border-color:var(--amber);color:var(--amber)}
+
+/* DIVIDER */
+.sec-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px;margin-top:4px}
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="brand">Kasir<span>Scan</span></div>
-  <div class="topbar-right">
-    <div class="total-chip" id="chip">0 item · Rp 0</div>
-  </div>
+  <div class="total-chip" id="chip">0 item · Rp 0</div>
 </div>
 
 <div class="main">
-
   <!-- KAMERA -->
   <div class="cam-section">
     <div class="cam-idle" id="cam-idle">
       <div class="cam-idle-icon">📷</div>
-      <div class="cam-idle-txt">Tekan <strong style="color:var(--text)">Mulai Scan</strong><br>untuk aktifkan kamera barcode</div>
+      <div class="cam-idle-txt">Tekan <strong style="color:var(--text)">Mulai Scan</strong><br>untuk aktifkan kamera</div>
     </div>
     <video id="video" autoplay playsinline muted style="display:none"></video>
-    <canvas id="canvas-hidden"></canvas>
     <div class="cam-overlay" id="cam-overlay" style="display:none">
       <div class="scan-box"><i></i><div class="scan-line"></div></div>
     </div>
@@ -184,23 +182,22 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
   <!-- KONTROL KAMERA -->
   <div class="cam-controls">
     <button class="btn btn-scan" id="btn-start" onclick="startCam()">▶ Mulai Scan</button>
-    <button class="btn btn-stop" id="btn-stop" onclick="stopCam()">⏹ Stop Kamera</button>
-    <select class="cam-select" id="cam-select" onchange="switchCam(this.value)"></select>
-    <button class="btn btn-cam" id="btn-flip" onclick="flipCam()" title="Ganti kamera" style="display:none">🔄</button>
+    <button class="btn btn-stop" id="btn-stop" onclick="stopCam()">⏹ Stop</button>
+    <button class="btn btn-cam" id="btn-flip" onclick="flipCam()" title="Ganti kamera">🔄</button>
   </div>
 
   <!-- MANUAL INPUT -->
   <div class="manual-bar">
-    <input class="manual-input" id="manual" type="text" placeholder="Ketik barcode / nama produk → Enter" autocomplete="off"
+    <input class="manual-input" id="manual" type="text" placeholder="Ketik barcode atau nama produk → Enter" autocomplete="off"
       onkeydown="if(event.key==='Enter')handleManual()">
     <button class="btn-add" onclick="handleManual()" title="Tambah">+</button>
   </div>
 
-  <!-- DAFTAR ITEM -->
+  <!-- LIST ITEM -->
   <div class="items-area" id="items-area">
     <div class="empty" id="empty-state">
       <div class="empty-icon">🛒</div>
-      <div class="empty-txt">Belum ada item.<br>Scan barcode atau ketik manual.</div>
+      <div class="empty-txt">Keranjang kosong.<br>Scan barcode atau ketik manual.</div>
     </div>
   </div>
 
@@ -211,255 +208,268 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);display:flex
       <span class="footer-total" id="footer-total">Rp 0</span>
     </div>
     <div class="footer-btns">
-      <button class="btn-cancel" onclick="cancelAll()" title="Batalkan semua belanjaan">✕ Batal</button>
+      <button class="btn-cancel" onclick="cancelAll()">✕ Batal</button>
       <button class="btn-checkout" id="btn-checkout" onclick="openCheckout()" disabled>Checkout →</button>
     </div>
   </div>
 </div>
 
-<!-- MODAL CHECKOUT -->
-<div class="modal-bg" id="modal-checkout">
-  <div class="modal">
-    <div id="modal-inner"></div>
+<!-- ===== POPUP TAMBAH PRODUK BARU ===== -->
+<div class="overlay" id="overlay-add">
+  <div class="popup">
+    <div class="popup-header">
+      <div class="popup-title">📦 Produk Baru Ditemukan</div>
+      <button class="popup-close" onclick="closeAdd()">✕</button>
+    </div>
+    <div class="popup-body">
+      <div style="background:var(--amber-dim);border:1px solid var(--amber-dim);border-radius:8px;padding:10px 12px;margin-bottom:14px;font-size:12px;color:var(--amber);line-height:1.5">
+        ⚠ Barcode ini belum ada di database.<br>Isi nama & harga untuk menyimpan dan langsung menambah ke keranjang.
+      </div>
+      <div class="form-group">
+        <span class="form-label">Barcode Terdeteksi</span>
+        <div class="bc-display" id="new-bc-display">-</div>
+      </div>
+      <div class="form-group">
+        <span class="form-label">Nama Produk</span>
+        <input class="form-input" id="new-name" type="text" placeholder="contoh: Indomie Goreng" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <span class="form-label">Harga (Rp)</span>
+        <input class="form-input" id="new-price" type="number" placeholder="contoh: 3500" min="0">
+      </div>
+      <div class="popup-actions">
+        <button class="btn-skip" onclick="closeAdd()">Lewati</button>
+        <button class="btn-save" onclick="saveNewProduct()">💾 Simpan & Tambah ke Keranjang</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== POPUP CHECKOUT ===== -->
+<div class="overlay" id="overlay-checkout">
+  <div class="popup">
+    <div class="popup-header">
+      <div class="popup-title" id="co-title">🧾 Ringkasan Pesanan</div>
+      <button class="popup-close" onclick="closeCheckout()">✕</button>
+    </div>
+    <div class="popup-body" id="co-body"></div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-// ─── PRODUK DATABASE ───
-let products = JSON.parse(localStorage.getItem('ks_products') || 'null') || [
-  {bc:'8999999001', name:'50-50 Biscuit',    price:5000},
-  {bc:'8999999002', name:'Bourbon Biscuit',  price:10000},
-  {bc:'8999999003', name:'Dairy Milk Choco', price:40000},
-  {bc:'8999999004', name:'Aqua 600ml',       price:4000},
-  {bc:'8999999005', name:'Indomie Goreng',   price:3500},
-  {bc:'8999999006', name:'Teh Botol Sosro',  price:5000},
-  {bc:'8999999007', name:'Good Day 250ml',   price:6500},
-  {bc:'8999999008', name:'Chitato Sapi',     price:12000},
-  {bc:'8888888001', name:'Coca-Cola 330ml',  price:8000},
-  {bc:'8888888002', name:'Sprite 330ml',     price:8000},
+// ── DATABASE ──
+let products = JSON.parse(localStorage.getItem('ks2_products') || 'null') || [
+  {bc:'8999999001',name:'50-50 Biscuit',price:5000},
+  {bc:'8999999002',name:'Bourbon Biscuit',price:10000},
+  {bc:'8999999003',name:'Dairy Milk Choco',price:40000},
+  {bc:'8999999004',name:'Aqua 600ml',price:4000},
+  {bc:'8999999005',name:'Indomie Goreng',price:3500},
+  {bc:'8999999006',name:'Teh Botol Sosro',price:5000},
 ];
+function saveProducts(){ localStorage.setItem('ks2_products', JSON.stringify(products)); }
 
-// ─── STATE ───
+// ── STATE ──
 let cart = [];
 let stream = null;
 let scanning = false;
 let cameras = [];
 let camIdx = 0;
 let scanCooldown = false;
-
-// ─── BARCODE DETECTOR (native browser API) ───
 let barcodeDetector = null;
-async function initBarcodeDetector() {
-  if ('BarcodeDetector' in window) {
-    try {
-      const formats = await BarcodeDetector.getSupportedFormats();
-      barcodeDetector = new BarcodeDetector({ formats });
-      return true;
-    } catch(e){ return false; }
-  }
-  return false;
+let pendingBarcode = '';
+let selMethod = 'QRIS';
+
+// ── TOAST ──
+let toastTimer;
+function toast(msg, type='', dur=2500){
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.className = 'toast show ' + type;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.className='toast', dur);
 }
 
-// ─── CAMERA ───
-async function startCam() {
-  document.getElementById('btn-start').disabled = true;
-  document.getElementById('btn-start').textContent = '⏳ Memuat...';
-
-  const hasBD = await initBarcodeDetector();
-  if (!hasBD) {
-    toast('Browser tidak support BarcodeDetector native. Gunakan input manual atau Chrome/Edge terbaru.', 'warn', 5000);
-    document.getElementById('btn-start').disabled = false;
-    document.getElementById('btn-start').textContent = '▶ Mulai Scan';
-    return;
+// ── KAMERA ──
+async function startCam(){
+  const btn = document.getElementById('btn-start');
+  btn.disabled = true; btn.textContent = '⏳ Memuat...';
+  if(!('BarcodeDetector' in window)){
+    toast('Browser tidak support scan otomatis. Pakai Chrome/Edge terbaru, atau input manual.','warn',6000);
+    btn.disabled=false; btn.textContent='▶ Mulai Scan'; return;
   }
-
-  try {
-    // Enumerate cameras
+  try{
+    const formats = await BarcodeDetector.getSupportedFormats();
+    barcodeDetector = new BarcodeDetector({formats});
     const devices = await navigator.mediaDevices.enumerateDevices();
-    cameras = devices.filter(d => d.kind === 'videoinput');
-
-    // Build selector if multiple cameras
-    const sel = document.getElementById('cam-select');
-    if (cameras.length > 1) {
-      sel.innerHTML = cameras.map((c,i) =>
-        `<option value="${i}">${c.label || 'Kamera '+(i+1)}</option>`
-      ).join('');
-      sel.style.display = '';
-      document.getElementById('btn-flip').style.display = '';
-    }
-
-    await openStream(cameras.length > 1 ? cameras[camIdx].deviceId : null);
-  } catch(e) {
+    cameras = devices.filter(d => d.kind==='videoinput');
+    if(cameras.length > 1){ document.getElementById('btn-flip').style.display=''; }
+    await openStream(cameras.length > 0 ? cameras[camIdx].deviceId : null);
+  } catch(e){
     let msg = 'Gagal akses kamera.';
-    if(e.name === 'NotAllowedError') msg = 'Izin kamera ditolak. Klik ikon kunci di address bar browser → izinkan kamera.';
-    else if(e.name === 'NotFoundError') msg = 'Tidak ada kamera ditemukan di perangkat ini.';
-    else if(e.name === 'NotReadableError') msg = 'Kamera sedang dipakai aplikasi lain. Tutup aplikasi lain lalu coba lagi.';
-    toast(msg, 'err', 6000);
-    document.getElementById('btn-start').disabled = false;
-    document.getElementById('btn-start').textContent = '▶ Mulai Scan';
+    if(e.name==='NotAllowedError') msg='Izin kamera ditolak. Klik ikon kunci di address bar → izinkan kamera.';
+    else if(e.name==='NotFoundError') msg='Tidak ada kamera ditemukan.';
+    else if(e.name==='NotReadableError') msg='Kamera dipakai aplikasi lain. Tutup lalu coba lagi.';
+    toast(msg,'err',7000);
+    btn.disabled=false; btn.textContent='▶ Mulai Scan';
   }
 }
 
-async function openStream(deviceId) {
-  if(stream) { stream.getTracks().forEach(t => t.stop()); }
-
-  const constraints = {
-    video: deviceId
-      ? { deviceId: { exact: deviceId }, width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: 'environment' }
-      : { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 } }
-  };
-
+async function openStream(deviceId){
+  if(stream) stream.getTracks().forEach(t=>t.stop());
+  const constraints = { video: deviceId
+    ? {deviceId:{exact:deviceId},width:{ideal:1280},height:{ideal:720}}
+    : {facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}} };
   stream = await navigator.mediaDevices.getUserMedia(constraints);
   const video = document.getElementById('video');
-  video.srcObject = stream;
-  await video.play();
-
+  video.srcObject = stream; await video.play();
   document.getElementById('cam-idle').style.display = 'none';
   video.style.display = 'block';
   document.getElementById('cam-overlay').style.display = '';
   document.getElementById('btn-start').style.display = 'none';
   document.getElementById('btn-stop').style.display = '';
   const badge = document.getElementById('cam-badge');
-  badge.className = 'cam-badge on';
-  badge.textContent = '● SCAN AKTIF';
+  badge.className='cam-badge on'; badge.textContent='● SCAN AKTIF';
   scanning = true;
-
   document.getElementById('btn-start').disabled = false;
   document.getElementById('btn-start').textContent = '▶ Mulai Scan';
   scanLoop();
 }
 
-function stopCam() {
+function stopCam(){
   scanning = false;
-  if(stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
+  if(stream){ stream.getTracks().forEach(t=>t.stop()); stream=null; }
   const video = document.getElementById('video');
-  video.style.display = 'none';
-  video.srcObject = null;
-  document.getElementById('cam-idle').style.display = 'flex';
-  document.getElementById('cam-overlay').style.display = 'none';
-  document.getElementById('btn-start').style.display = '';
-  document.getElementById('btn-stop').style.display = 'none';
-  document.getElementById('cam-select').style.display = 'none';
-  document.getElementById('btn-flip').style.display = 'none';
+  video.style.display='none'; video.srcObject=null;
+  document.getElementById('cam-idle').style.display='flex';
+  document.getElementById('cam-overlay').style.display='none';
+  document.getElementById('btn-start').style.display='';
+  document.getElementById('btn-stop').style.display='none';
+  document.getElementById('btn-flip').style.display='none';
   const badge = document.getElementById('cam-badge');
-  badge.className = 'cam-badge off';
-  badge.textContent = '● KAMERA OFF';
+  badge.className='cam-badge off'; badge.textContent='● KAMERA OFF';
 }
 
-async function flipCam() {
+async function flipCam(){
   if(!cameras.length) return;
-  camIdx = (camIdx + 1) % cameras.length;
-  document.getElementById('cam-select').value = camIdx;
+  camIdx = (camIdx+1) % cameras.length;
   await openStream(cameras[camIdx].deviceId);
 }
 
-async function switchCam(idx) {
-  camIdx = parseInt(idx);
-  await openStream(cameras[camIdx].deviceId);
-}
-
-// ─── SCAN LOOP (native BarcodeDetector) ───
-async function scanLoop() {
+async function scanLoop(){
   const video = document.getElementById('video');
-  while(scanning) {
-    if(video.readyState >= 2 && !scanCooldown) {
-      try {
+  while(scanning){
+    if(video.readyState >= 2 && !scanCooldown && !document.getElementById('overlay-add').classList.contains('open')){
+      try{
         const barcodes = await barcodeDetector.detect(video);
-        if(barcodes.length > 0) {
-          const code = barcodes[0].rawValue;
-          handleBarcode(code);
+        if(barcodes.length > 0){
+          handleBarcode(barcodes[0].rawValue);
           scanCooldown = true;
-          setTimeout(() => { scanCooldown = false; }, 1800);
+          setTimeout(()=>{ scanCooldown=false; }, 2000);
         }
       } catch(e){}
     }
-    await new Promise(r => setTimeout(r, 150));
+    await new Promise(r=>setTimeout(r,150));
   }
 }
 
-// ─── BARCODE HANDLER ───
-function handleBarcode(code) {
+// ── BARCODE HANDLER ──
+function handleBarcode(code){
   const p = products.find(x => x.bc === code);
-  if(p) {
+  if(p){
     addToCart(p);
   } else {
-    toast(`⚠ Barcode: ${code} — tidak ada di database`, 'warn');
+    // Produk tidak dikenal → tampilkan popup tambah produk
+    pendingBarcode = code;
+    document.getElementById('new-bc-display').textContent = code;
+    document.getElementById('new-name').value = '';
+    document.getElementById('new-price').value = '';
+    document.getElementById('overlay-add').classList.add('open');
+    setTimeout(()=>document.getElementById('new-name').focus(), 300);
   }
 }
 
-function handleManual() {
+function handleManual(){
   const val = document.getElementById('manual').value.trim();
   if(!val) return;
   const q = val.toLowerCase();
-  const p = products.find(x => x.bc === val || x.name.toLowerCase().includes(q));
-  if(p) {
+  const p = products.find(x => x.bc===val || x.name.toLowerCase().includes(q));
+  if(p){
     addToCart(p);
     document.getElementById('manual').value = '';
   } else {
-    toast('Produk tidak ditemukan', 'err');
+    // Input manual tidak dikenal → juga tampilkan popup
+    pendingBarcode = val;
+    document.getElementById('new-bc-display').textContent = val;
+    document.getElementById('new-name').value = '';
+    document.getElementById('new-price').value = '';
+    document.getElementById('overlay-add').classList.add('open');
+    setTimeout(()=>document.getElementById('new-name').focus(), 300);
+    document.getElementById('manual').value = '';
   }
 }
 
-// ─── CART ───
-function addToCart(product) {
-  const ex = cart.find(c => c.bc === product.bc);
-  if(ex) {
-    ex.qty++;
-    toast(`+1 ${product.name} (${ex.qty}×)`, 'ok');
-  } else {
-    cart.push({...product, qty:1});
-    toast(`✓ ${product.name}`, 'ok');
-  }
+// ── POPUP TAMBAH PRODUK ──
+function closeAdd(){
+  document.getElementById('overlay-add').classList.remove('open');
+  pendingBarcode = '';
+}
+
+function saveNewProduct(){
+  const name = document.getElementById('new-name').value.trim();
+  const price = parseInt(document.getElementById('new-price').value);
+  if(!name){ toast('Isi nama produk dulu!','err'); return; }
+  if(isNaN(price)||price<=0){ toast('Isi harga yang valid!','err'); return; }
+  const bc = pendingBarcode;
+  const newProd = {bc, name, price};
+  products.push(newProd);
+  saveProducts();
+  closeAdd();
+  addToCart(newProd);
+  toast(`✓ "${name}" disimpan ke database`,'ok');
+}
+
+// ── CART ──
+function addToCart(product){
+  const ex = cart.find(c=>c.bc===product.bc);
+  if(ex){ ex.qty++; toast(`+1 ${product.name} (${ex.qty}×)`,'ok'); }
+  else { cart.push({...product,qty:1}); toast(`✓ ${product.name}`,'ok'); }
   renderCart();
 }
 
-function changeQty(bc, d) {
-  const idx = cart.findIndex(c => c.bc === bc);
-  if(idx < 0) return;
+function changeQty(bc, d){
+  const idx = cart.findIndex(c=>c.bc===bc);
+  if(idx<0) return;
   cart[idx].qty += d;
-  if(cart[idx].qty <= 0) cart.splice(idx, 1);
+  if(cart[idx].qty <= 0) cart.splice(idx,1);
   renderCart();
 }
 
-function removeItem(bc) {
-  cart = cart.filter(c => c.bc !== bc);
-  renderCart();
-}
+function removeItem(bc){ cart=cart.filter(c=>c.bc!==bc); renderCart(); }
 
-function cancelAll() {
-  if(cart.length === 0) return;
+function cancelAll(){
+  if(cart.length===0) return;
   if(!confirm('Batalkan semua belanjaan?')) return;
-  cart = [];
-  renderCart();
-  toast('Belanjaan dibatalkan', 'warn');
+  cart=[]; renderCart(); toast('Belanjaan dibatalkan','warn');
 }
 
-function renderCart() {
+function renderCart(){
   const area = document.getElementById('items-area');
   const empty = document.getElementById('empty-state');
-  const total = cart.reduce((s,c) => s + c.price * c.qty, 0);
-  const items = cart.reduce((s,c) => s + c.qty, 0);
-
-  document.getElementById('chip').textContent = `${items} item · Rp ${total.toLocaleString('id-ID')}`;
-  document.getElementById('footer-count').textContent = `${items} item`;
-  document.getElementById('footer-total').textContent = `Rp ${total.toLocaleString('id-ID')}`;
-  document.getElementById('btn-checkout').disabled = cart.length === 0;
-
-  if(cart.length === 0) {
-    empty.style.display = 'flex'; return;
-  }
-  empty.style.display = 'none';
-
-  // Remove old item cards but keep empty state
-  Array.from(area.querySelectorAll('.item-card')).forEach(e => e.remove());
-
-  cart.slice().reverse().forEach((item, ri) => {
-    const idx = cart.length - 1 - ri;
+  const total = cart.reduce((s,c)=>s+c.price*c.qty,0);
+  const items = cart.reduce((s,c)=>s+c.qty,0);
+  document.getElementById('chip').textContent=`${items} item · Rp ${total.toLocaleString('id-ID')}`;
+  document.getElementById('footer-count').textContent=`${items} item`;
+  document.getElementById('footer-total').textContent=`Rp ${total.toLocaleString('id-ID')}`;
+  document.getElementById('btn-checkout').disabled = cart.length===0;
+  if(cart.length===0){ empty.style.display='flex'; return; }
+  empty.style.display='none';
+  Array.from(area.querySelectorAll('.item-card')).forEach(e=>e.remove());
+  cart.slice().reverse().forEach((item,ri)=>{
+    const idx = cart.length-1-ri;
     const card = document.createElement('div');
-    card.className = 'item-card';
-    card.innerHTML = `
+    card.className='item-card';
+    card.innerHTML=`
       <div class="item-num">${idx+1}</div>
       <div class="item-body">
         <div class="item-name">${item.name}</div>
@@ -471,127 +481,95 @@ function renderCart() {
           <button class="qbtn del" onclick="changeQty('${item.bc}',-1)">−</button>
           <span class="qnum">${item.qty}</span>
           <button class="qbtn" onclick="changeQty('${item.bc}',1)">+</button>
-          <button class="qbtn del" onclick="removeItem('${item.bc}')" title="Hapus" style="font-size:10px;color:var(--red)">✕</button>
+          <button class="qbtn del" onclick="removeItem('${item.bc}')" style="font-size:10px;color:var(--red)">✕</button>
         </div>
-      </div>
-    `;
+      </div>`;
     area.insertBefore(card, area.firstChild);
   });
 }
 
-// ─── CHECKOUT MODAL ───
-let selMethod = 'QRIS';
-function openCheckout() {
-  if(cart.length === 0) return;
-  renderCheckoutModal();
-  document.getElementById('modal-checkout').classList.add('open');
+// ── CHECKOUT ──
+function openCheckout(){
+  if(cart.length===0) return;
+  renderCheckoutView();
+  document.getElementById('overlay-checkout').classList.add('open');
 }
-function closeModal() {
-  document.getElementById('modal-checkout').classList.remove('open');
-}
+function closeCheckout(){ document.getElementById('overlay-checkout').classList.remove('open'); }
 
-function renderCheckoutModal() {
-  const total = cart.reduce((s,c) => s + c.price * c.qty, 0);
-  const rows = cart.map(c => `
+function renderCheckoutView(){
+  const total = cart.reduce((s,c)=>s+c.price*c.qty,0);
+  const rows = cart.map(c=>`
     <div class="r-item">
       <span class="r-name">${c.name} ×${c.qty}</span>
       <span class="r-val">Rp ${(c.price*c.qty).toLocaleString('id-ID')}</span>
-    </div>
-  `).join('');
-
-  document.getElementById('modal-inner').innerHTML = `
-    <div class="modal-title">🧾 Ringkasan Pesanan</div>
-    <div class="receipt-list">${rows}</div>
+    </div>`).join('');
+  const methods = ['QRIS','Tunai','Debit/Kredit','Transfer'];
+  const icons = {QRIS:'📱',Tunai:'💵','Debit/Kredit':'💳',Transfer:'📲'};
+  document.getElementById('co-title').textContent = '🧾 Ringkasan Pesanan';
+  document.getElementById('co-body').innerHTML = `
+    <div class="sec-label">Item Belanja</div>
+    <div>${rows}</div>
     <div class="r-total-row"><span>Total</span><span class="r-val">Rp ${total.toLocaleString('id-ID')}</span></div>
-    <div style="font-size:12px;color:var(--muted);margin-top:14px;margin-bottom:4px;font-weight:600;text-transform:uppercase;letter-spacing:.6px">Metode Pembayaran</div>
+    <div class="sec-label" style="margin-top:14px">Metode Bayar</div>
     <div class="pay-methods">
-      ${['QRIS','Tunai','Debit/Kredit','Transfer'].map(m =>
-        `<div class="pm ${m===selMethod?'sel':''}" onclick="pickMethod(this,'${m}')">
-          <span class="pm-icon">${{QRIS:'📱',Tunai:'💵','Debit/Kredit':'💳',Transfer:'📲'}[m]}</span>
-          <span class="pm-label">${m}</span>
-        </div>`).join('')}
+      ${methods.map(m=>`<div class="pm ${m===selMethod?'sel':''}" onclick="pickMethod(this,'${m}')">
+        <span class="pm-icon">${icons[m]}</span><span class="pm-label">${m}</span></div>`).join('')}
     </div>
-    <div class="modal-actions">
-      <button class="btn-back" onclick="closeModal()">← Kembali</button>
+    <div class="popup-actions">
+      <button class="btn-back" onclick="closeCheckout()">← Kembali</button>
       <button class="btn-confirm" onclick="confirmPayment()">✓ Bayar Sekarang</button>
-    </div>
-  `;
+    </div>`;
 }
 
-function pickMethod(el, method) {
+function pickMethod(el, method){
   selMethod = method;
-  document.querySelectorAll('.pm').forEach(e => e.classList.remove('sel'));
+  document.querySelectorAll('.pm').forEach(e=>e.classList.remove('sel'));
   el.classList.add('sel');
 }
 
-function confirmPayment() {
-  const total = cart.reduce((s,c) => s + c.price * c.qty, 0);
-  const items = cart.reduce((s,c) => s + c.qty, 0);
+function confirmPayment(){
+  const total = cart.reduce((s,c)=>s+c.price*c.qty,0);
+  const items = cart.reduce((s,c)=>s+c.qty,0);
   const now = new Date();
   const dateStr = now.toLocaleDateString('id-ID',{day:'2-digit',month:'long',year:'numeric'})
-    + ' ' + now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
-  const noStruk = 'TRX' + Date.now().toString().slice(-8);
-
-  let struk = `=============================\n`;
-  struk += `      KASIR SCAN POS\n`;
-  struk += `=============================\n`;
-  struk += `No. ${noStruk}\n`;
-  struk += `${dateStr}\n`;
-  struk += `-----------------------------\n`;
-  cart.forEach(c => {
-    const nm = c.name.length > 16 ? c.name.substring(0,16)+'…' : c.name;
-    struk += `${nm}\n`;
-    struk += `  ${c.qty} x Rp ${c.price.toLocaleString('id-ID').padStart(8)} = Rp ${(c.price*c.qty).toLocaleString('id-ID')}\n`;
+    +' '+now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
+  const noTrx = 'TRX'+Date.now().toString().slice(-8);
+  let struk=`==============================\n     KASIR SCAN POS\n==============================\nNo. ${noTrx}\n${dateStr}\n------------------------------\n`;
+  cart.forEach(c=>{
+    const nm=c.name.length>16?c.name.substring(0,15)+'…':c.name;
+    struk+=`${nm}\n  ${c.qty} x Rp ${c.price.toLocaleString('id-ID')} = Rp ${(c.price*c.qty).toLocaleString('id-ID')}\n`;
   });
-  struk += `-----------------------------\n`;
-  struk += `${items} item\n`;
-  struk += `TOTAL   Rp ${total.toLocaleString('id-ID')}\n`;
-  struk += `Bayar   ${selMethod}\n`;
-  struk += `=============================\n`;
-  struk += `     Terima kasih! 🙏\n`;
-  struk += `=============================`;
-
-  document.getElementById('modal-inner').innerHTML = `
-    <div class="success-modal">
+  struk+=`------------------------------\n${items} item\nTOTAL  Rp ${total.toLocaleString('id-ID')}\nBayar  ${selMethod}\n==============================\n    Terima kasih! 🙏\n==============================`;
+  const strukcopy = struk;
+  document.getElementById('co-title').textContent = '✅ Pembayaran Berhasil';
+  document.getElementById('co-body').innerHTML=`
+    <div class="success-wrap">
       <div class="success-icon">✅</div>
       <div class="success-title">Pembayaran Berhasil!</div>
-      <div class="success-sub">Rp ${total.toLocaleString('id-ID')} via ${selMethod} · ${dateStr}</div>
+      <div class="success-sub">Rp ${total.toLocaleString('id-ID')} via ${selMethod}</div>
       <div class="struk-box">${struk}</div>
       <button class="btn-new" onclick="newTransaction()">🛒 Transaksi Baru</button>
-      <button class="btn-print" onclick="printStruk(${JSON.stringify(struk).replace(/</g,'&lt;')})">🖨 Cetak Struk</button>
-    </div>
-  `;
-
-  cart = [];
-  renderCart();
+      <button class="btn-print" onclick="doPrint()">🖨 Cetak Struk</button>
+    </div>`;
+  window._lastStruk = strukcopy;
+  cart=[]; renderCart();
 }
 
-function newTransaction() {
-  closeModal();
+function newTransaction(){ closeCheckout(); }
+function doPrint(){
+  const w=window.open('','_blank','width=320,height=500');
+  if(!w){toast('Popup diblokir browser','err');return;}
+  w.document.write(`<pre style="font-family:monospace;font-size:13px;padding:16px">${window._lastStruk||''}</pre>`);
+  w.document.close(); w.focus(); setTimeout(()=>w.print(),400);
 }
 
-function printStruk(struk) {
-  const w = window.open('','_blank','width=320,height=500');
-  if(!w) { toast('Popup diblokir browser', 'err'); return; }
-  w.document.write(`<!DOCTYPE html><html><head><title>Struk</title>
-    <style>body{font-family:monospace;font-size:13px;padding:16px;white-space:pre;}</style>
-    </head><body>${struk}</body></html>`);
-  w.document.close();
-  w.focus();
-  setTimeout(() => w.print(), 400);
-}
+// Tutup overlay jika klik background
+document.getElementById('overlay-add').addEventListener('click',function(e){if(e.target===this)closeAdd();});
+document.getElementById('overlay-checkout').addEventListener('click',function(e){if(e.target===this)closeCheckout();});
 
-// ─── TOAST ───
-let toastTimer;
-function toast(msg, type='', dur=2500) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.className = 'toast show ' + type;
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.className = 'toast', dur);
-}
+// Enter di form tambah produk
+document.getElementById('new-price').addEventListener('keydown',function(e){if(e.key==='Enter')saveNewProduct();});
 
-// Init
 renderCart();
 </script>
 </body>
