@@ -303,8 +303,11 @@ async function startCam(){
     barcodeDetector = new BarcodeDetector({formats});
     const devices = await navigator.mediaDevices.enumerateDevices();
     cameras = devices.filter(d => d.kind==='videoinput');
-    if(cameras.length > 1){ document.getElementById('btn-flip').style.display=''; }
-    await openStream(cameras.length > 0 ? cameras[camIdx].deviceId : null);
+if(cameras.length > 1){ document.getElementById('btn-flip').style.display=''; }
+// Mulai dari kamera belakang — cari yang labelnya mengandung "back"/"rear"
+const backIdx = cameras.findIndex(c => /back|rear|belakang|environment/i.test(c.label));
+camIdx = backIdx >= 0 ? backIdx : 0;
+await openStream(cameras[camIdx].deviceId);
   } catch(e){
     let msg = 'Gagal akses kamera.';
     if(e.name==='NotAllowedError') msg='Izin kamera ditolak. Klik ikon kunci di address bar → izinkan kamera.';
